@@ -164,6 +164,8 @@
               <h2 style="font-size: medium;font-style: italic;">Tell me what it's about</h2>
               <!-- checkout formspree.io for easy form setup -->
               <form class="work-request" data-netlify="true" name="Request" data-netlify-recaptcha="true">
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                <input type="hidden" name="action" value="validate_captcha">
                 <div class="work-request--options">
                   <span class="options-a">
                     <input id="opt-1" type="checkbox" value="Development" name="string[]">
@@ -240,8 +242,7 @@
                     <label for="email">Email</label>
                   </div>
                 </div>
-                <input type="submit" value="Send Request" class="g-recaptcha" data-sitekey="6Lf74cYUAAAAAGSZUczgd6yWVIkQ_g5RkpiWfgzr
-                " data-callback='onSubmit'>
+                <input type="submit" value="Send Request">
               </form>
             </div>
           </li>
@@ -279,5 +280,16 @@
 <script src="ajax/libs/jquery/2-2-4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="others/global/assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 <script src="others/global/assets/js/functions-min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lem4sYUAAAAAHNbT2GzoQ_EVPElPvyloAC__jX4"></script>
+<script>
+    grecaptcha.ready(function() {
+    // do request for recaptcha token
+    // response is promise with passed token
+        grecaptcha.execute('6Lem4sYUAAAAAHNbT2GzoQ_EVPElPvyloAC__jX4', {action:'validate_captcha'})
+                  .then(function(token) {
+            // add token value to form
+            document.getElementById('g-recaptcha-response').value = token;
+        });
+    });
+</script>
 </html>

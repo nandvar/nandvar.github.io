@@ -1,2 +1,0 @@
-# nandvar.github.io
- Portfolio
